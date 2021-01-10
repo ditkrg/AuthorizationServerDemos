@@ -3,6 +3,7 @@ import { signoutRedirect } from '../services/userService'
 import { useSelector } from 'react-redux'
 import * as apiService from '../services/apiService'
 import { prettifyJson } from '../utils/jsonUtils'
+import { useEffect } from 'react'
 
 function Home() {
   const user = useSelector(state => state.auth.user)
@@ -10,6 +11,10 @@ function Home() {
   const [licensePlate, setlicensePlate] = useState('')
   const [color, setColor] = useState('White')
   const [type, setType] = useState(1)
+
+  useEffect(() => {
+    getVehicles();
+  }, []);
 
   const [vehicleData, setVehicleData] = useState(null)
   function signOut() {
@@ -78,7 +83,7 @@ function Home() {
 {
   vehicleData ?
     <ul>
-      { vehicleData.map(v => (<li>{v.color} {v.model} ({v.licensePlate}) - {getType(v.type)}</li>)) }
+      { vehicleData.map(v => (<li key={v.id}>{v.color} {v.model} ({v.licensePlate}) - {getType(v.type)}</li>)) }
     </ul>
       :
       <p>No vehicles yet :(</p>
