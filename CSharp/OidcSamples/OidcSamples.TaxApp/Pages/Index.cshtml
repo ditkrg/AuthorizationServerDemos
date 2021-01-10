@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>General Directorate of Region Taxes and Real Estate</h2>
+<p class="lead">Welcome @Model.FirstName @Model.LastName! Your total tax is:</p>
+<p class="font-weight-bold" style="font-size: 64px">@Model.TotalTax.ToString("N0") IQD</p>
+
+<h3>Taxable Properties</h3>
+<h4>Vehicles</h4>
+<ul>
+    @foreach (var vehicle in Model.Vehicles)
+    {
+        <li>@vehicle.Model (@vehicle.LicensePlate)</li>
+    }
+</ul>
