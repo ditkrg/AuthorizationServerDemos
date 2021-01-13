@@ -1,8 +1,10 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const db = require('./queries')
 
 const app = express()
+app.use(cors())
 const port = 3000
 
 const getRealEstates = (request, response) => {
@@ -26,6 +28,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/real-estate', db.getAllRealEstate);
+app.post('/real-estate', db.insertRealEstate);
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

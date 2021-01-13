@@ -8,7 +8,7 @@ const pool = new Pool({
 });
 
 const getAllRealEstate = (request, response) => {
-    pool.query('SELECT * FROM real_estate ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM real_estate ORDER BY id DESC', (error, results) => {
       if (error) {
         throw error
       }
@@ -16,6 +16,18 @@ const getAllRealEstate = (request, response) => {
     })
 };
 
+const insertRealEstate = (request, response) => {
+  const { address, area } = request.body
+
+  pool.query('INSERT INTO real_estate (address, area) VALUES ($1, $2)', [address, area], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(201).send('done :)')
+  })
+}
+
 module.exports = {
-  getAllRealEstate
+  getAllRealEstate,
+  insertRealEstate
 }
