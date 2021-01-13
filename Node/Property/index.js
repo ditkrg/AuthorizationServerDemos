@@ -7,15 +7,6 @@ const app = express()
 app.use(cors())
 const port = 3000
 
-const getRealEstates = (request, response) => {
-    pool.query('SELECT * FROM real_estae ORDER BY id ASC', (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-}
-
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
