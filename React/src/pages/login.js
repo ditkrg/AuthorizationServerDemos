@@ -1,10 +1,10 @@
-import React from 'react';
-import { signinRedirect } from '../services/userService';
-import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import Navbar from './components/Navbar';
-import Main from './components/Main';
-import LoginWindow from './components/LoginWindow';
+import React from "react";
+import { signinRedirect } from "../services/userService";
+import { Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
+import LoginWindow from "./components/LoginWindow";
 
 function Login() {
   const user = useSelector((state) => state.auth.user);
@@ -14,7 +14,7 @@ function Login() {
   }
 
   return user ? (
-    <Redirect to={'/'} />
+    <Redirect to={"/"} />
   ) : (
     <div className="h-screen">
       <Navbar />
