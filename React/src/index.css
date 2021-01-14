@@ -2,6 +2,7 @@
 
 :root {
   --blue: #2170b9;
+  --black: #1a1c21;
 }
 
 .bg-blue-custom {
@@ -18,7 +19,7 @@ p,
 }
 
 .text-black-custom {
-  color: #1a1c21;
+  color: var(--black);
 }
 
 p,
