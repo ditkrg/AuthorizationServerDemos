@@ -1,23 +1,28 @@
-import React from 'react';
-import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from "react";
+import logo from "../../images/logo.svg";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { signoutRedirect } from "../../services/userService";
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
 
+  function signOut() {
+    signoutRedirect();
+  }
+
   return (
     <div
       className="w-100 bg-blue-custom flex justify-center items-center"
-      style={{ height: '90px' }}
+      style={{ height: "90px" }}
     >
       <nav className="flex items-center justify-between w-4/5">
         <img src={logo} alt="logo" className="h-28" />
         {user ? (
-          <ul className="list-none flex items-center justify-between w-1/5 m-0">
+          <ul className="list-none flex items-center justify-between w-2/6 m-0">
             <li className="m-0">
               <Link
-                to="/vehicles"
+                to="/"
                 className="text-white font-inter text-xl font-semibold hover:text-white"
               >
                 Your Vehicles
@@ -31,9 +36,15 @@ const Navbar = () => {
                 Register A Vehicles
               </Link>
             </li>
+            <li
+              onClick={signOut}
+              className="m-0 text-white font-inter text-xl font-semibold hover:text-white cursor-pointer"
+            >
+              Sign Out
+            </li>
           </ul>
         ) : (
-          ''
+          ""
         )}
       </nav>
     </div>
