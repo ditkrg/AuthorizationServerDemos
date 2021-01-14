@@ -1,28 +1,26 @@
-import React from 'react'
-import { signinRedirect } from '../services/userService'
-import { Redirect } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import Navbar from './components/Navbar'
-import VehicleRegisterForm from './components/VehicleRegisterForm'
+import React from 'react';
+import { signinRedirect } from '../services/userService';
+import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import VehicleRegisterForm from './components/VehicleRegisterForm';
 
 function Login() {
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector((state) => state.auth.user);
 
   function login() {
-    signinRedirect()
+    signinRedirect();
   }
 
-  return (
-    (user) ?
-      (<Redirect to={'/'} />)
-      :
-      (
-        <div>
-          <Navbar />
-          <VehicleRegisterForm />
-         </div>
-      )
-  )
+  return user ? (
+    <Redirect to={'/'} />
+  ) : (
+    <div className="h-screen">
+      <Navbar />
+      <Main Component={VehicleRegisterForm} />
+    </div>
+  );
 }
 
-export default Login
+export default Login;
