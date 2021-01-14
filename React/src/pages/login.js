@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
-import VehicleRegisterForm from './components/VehicleRegisterForm';
+import LoginWindow from './components/LoginWindow';
 
 function Login() {
   const user = useSelector((state) => state.auth.user);
@@ -18,7 +18,7 @@ function Login() {
   ) : (
     <div className="h-screen">
       <Navbar />
-      <Main Component={VehicleRegisterForm} />
+      <Main Component={LoginWindow} />
     </div>
   );
 }

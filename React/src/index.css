@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display&display=swap');
 
-.bg-blue-custom {
-  background-color: #2170b9;
+:root {
+  --blue: #2170b9;
 }
 
+.bg-blue-custom {
+  background-color: var(--blue);
+}
+
+p,
 .font-inter {
   font-family: 'Inter', sans-serif;
 }
@@ -12,6 +17,21 @@
   font-family: 'Playfair Display', serif;
 }
 
-/* .text-blue-custom {
-  color: #2170b9;
-} */
+.text-black-custom {
+  color: #1a1c21;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: left;
+}
+
+button:hover {
+  background-color: #1d6ab1;
+  border: none;
+}
