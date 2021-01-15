@@ -4,6 +4,7 @@ import * as apiService from "../../services/apiService";
 import { prettifyJson } from "../../utils/jsonUtils";
 import Heading1 from "./Heading1";
 import Button from "./Button";
+import Table from "./table/Table";
 
 const VehiclesMain = () => {
   const user = useSelector((state) => state.auth.user);
@@ -110,13 +111,15 @@ const VehiclesMain = () => {
             Your Vehicles:
           </h3>
 
-          <ul>
+          <Table />
+
+          {/* <ul>
             {vehicleData.map((v) => (
               <li key={v.id}>
                 {v.color} {v.model} ({v.licensePlate}) - {getType(v.type)}
               </li>
             ))}
-          </ul>
+          </ul> */}
         </>
       ) : (
         <h3 className="font-light font-inter text-black-custom my-32 self-center">
