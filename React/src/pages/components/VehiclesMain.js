@@ -45,6 +45,49 @@ const VehiclesMain = () => {
       licensePlate: "9956443",
       type: 1,
     },
+
+    {
+      id: Math.floor(Math.random() * 200) + 1,
+      color: "White",
+      model: "Toyota Camry",
+      licensePlate: "9956443",
+      type: 1,
+    },
+    {
+      id: Math.floor(Math.random() * 200) + 1,
+      color: "White",
+      model: "Toyota Camry",
+      licensePlate: "9956443",
+      type: 1,
+    },
+    {
+      id: Math.floor(Math.random() * 200) + 1,
+      color: "White",
+      model: "Toyota Camry",
+      licensePlate: "9956443",
+      type: 1,
+    },
+    {
+      id: Math.floor(Math.random() * 200) + 1,
+      color: "White",
+      model: "Toyota Camry",
+      licensePlate: "9956443",
+      type: 1,
+    },
+    {
+      id: Math.floor(Math.random() * 200) + 1,
+      color: "White",
+      model: "Toyota Camry",
+      licensePlate: "9956443",
+      type: 1,
+    },
+    {
+      id: Math.floor(Math.random() * 200) + 1,
+      color: "White",
+      model: "Toyota Camry",
+      licensePlate: "9956443",
+      type: 1,
+    },
   ]);
 
   useEffect(() => {
@@ -62,9 +105,9 @@ const VehiclesMain = () => {
     <div className="flex flex-col">
       <Heading1
         text={"Traffic Police Service"}
+        classes="mt-24"
         styles={{
           marginBottom: "0",
-          ...(!vehicleData && { marginTop: "10%" }),
         }}
       />
       {/* <p>Hello, {user.profile.given_name}.</p> */}
@@ -83,7 +126,7 @@ const VehiclesMain = () => {
       )}
       <Button
         text="Register A Vehicle"
-        classes={vehicleData && "self-start mt-20"}
+        classes={vehicleData && "self-start my-24"}
       />
     </div>
   );

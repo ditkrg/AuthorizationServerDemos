@@ -13,11 +13,13 @@ const Navbar = () => {
 
   return (
     <div
-      className="w-100 bg-blue-custom flex justify-center items-center"
+      className="w-screen bg-blue-custom flex justify-center items-center fixed top-0 left-0"
       style={{ height: "90px" }}
     >
       <nav className="flex items-center justify-between w-4/5">
-        <img src={logo} alt="logo" className="h-28" />
+        <Link to="/">
+          <img src={logo} alt="logo" className="h-28" />
+        </Link>
         {user ? (
           <ul className="list-none flex items-center justify-between w-2/6 m-0">
             <li className="m-0">
