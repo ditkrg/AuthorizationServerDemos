@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // Services
 import * as apiService from "../../services/apiService";
@@ -12,6 +13,8 @@ import Table from "./table/Table";
 
 const VehiclesMain = () => {
   const user = useSelector((state) => state.auth.user);
+
+  const history = useHistory();
 
   // Initial state must be null ** Temporary **
   const [vehicleData, setVehicleData] = useState([
@@ -86,6 +89,7 @@ const VehiclesMain = () => {
       <Button
         text="Register A Vehicle"
         classes={vehicleData && "self-start my-24"}
+        onClickEvent={() => history.push("/register")}
       />
     </div>
   );
