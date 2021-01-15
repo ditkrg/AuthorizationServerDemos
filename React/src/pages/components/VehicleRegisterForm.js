@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+
+// Services
 import * as apiService from "../../services/apiService";
 
 const VehicleRegisterForm = () => {
@@ -19,7 +21,7 @@ const VehicleRegisterForm = () => {
   }
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="shadow">
+    <form onSubmit={(e) => e.preventDefault()}>
       <h3>Register Vehicle:</h3>
       <div className="form-group">
         <label>Model: </label>
