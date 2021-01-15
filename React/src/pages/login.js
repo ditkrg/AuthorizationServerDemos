@@ -16,7 +16,7 @@ function Login() {
   return user ? (
     <Redirect to={"/"} />
   ) : (
-    <div className="h-screen">
+    <div>
       <Navbar />
       <Main Component={LoginWindow} />
     </div>

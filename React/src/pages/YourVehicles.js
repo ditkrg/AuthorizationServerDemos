@@ -5,7 +5,7 @@ import VehiclesMain from "./components/VehiclesMain";
 
 const YourVehicles = () => {
   return (
-    <div className="h-screen overflow-hidden">
+    <div>
       <Navbar />
       <Main Component={VehiclesMain} />
     </div>
