@@ -37,7 +37,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/signout-oidc" component={SignoutOidc} />
             <Route path="/signin-oidc" component={SigninOidc} />
-            <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute path="/" component={Home} />
           </Switch>
         </Router>
       </AuthProvider>
