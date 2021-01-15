@@ -1,7 +1,10 @@
 import React from "react";
 
 const TableData = ({ text, Component }) => (
-  <td className="px-16 py-4 whitespace-nowrap text-2xl font-inter text-black-custom font-normal">
+  <td
+    className="whitespace-nowrap text-2xl font-inter text-black-custom font-normal text-center"
+    style={{ padding: "10px 40px 10px 40px" }}
+  >
     {text ? text : <Component />}
   </td>
 );

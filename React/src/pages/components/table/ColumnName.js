@@ -3,7 +3,8 @@ import React from "react";
 const ColumnName = ({ text }) => (
   <th
     scope="col"
-    className="px-16 py-4 whitespace-nowrap text-2xl font-inter text-black-custom font-semibold"
+    className="whitespace-nowrap text-2xl font-inter text-black-custom font-semibold text-center"
+    style={{ padding: "10px 40px 10px 40px" }}
   >
     {text}
   </th>
