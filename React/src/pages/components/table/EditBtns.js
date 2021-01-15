@@ -5,9 +5,9 @@ import { BsThreeDots } from "react-icons/bs";
 const EditBtns = () => {
   return (
     <div className="flex">
-      <FiTrash className="mx-3" />
-      <FiSettings className="mx-3" />
-      <BsThreeDots className="mx-3 text-3xl" />
+      <FiTrash className="mx-3 cursor-pointer" />
+      <FiSettings className="mx-3 cursor-pointer" />
+      <BsThreeDots className="mx-3 text-3xl cursor-pointer" />
     </div>
   );
 };
