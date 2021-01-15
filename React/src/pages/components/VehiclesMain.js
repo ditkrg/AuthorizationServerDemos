@@ -46,35 +46,6 @@ const VehiclesMain = () => {
       licensePlate: "9956443",
       type: 1,
     },
-
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
   ]);
 
   useEffect(() => {
@@ -87,22 +58,14 @@ const VehiclesMain = () => {
     setVehicleData(vehicles);
   }
 
-  function getType(type) {
-    switch (type) {
-      case 1:
-        return "Sedan";
-      case 2:
-        return "SUV";
-      case 3:
-        return "Pickup";
-    }
-  }
-
   return (
     <div className="flex flex-col">
       <Heading1
         text={"Traffic Police Service"}
-        styles={{ marginBottom: "0", marginTop: "20%" }}
+        styles={{
+          marginBottom: "0",
+          ...(!vehicleData && { marginTop: "10%" }),
+        }}
       />
       {/* <p>Hello, {user.profile.given_name}.</p> */}
       {vehicleData ? (
@@ -111,7 +74,7 @@ const VehiclesMain = () => {
             Your Vehicles:
           </h3>
 
-          <Table />
+          <Table vehicleData={vehicleData} />
 
           {/* <ul>
             {vehicleData.map((v) => (
@@ -126,7 +89,10 @@ const VehiclesMain = () => {
           No vehicles yet.
         </h3>
       )}
-      <Button text={"Register A Vehicle"} />
+      <Button
+        text="Register A Vehicle"
+        classes={vehicleData && "self-start mt-20"}
+      />
     </div>
   );
 };
