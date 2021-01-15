@@ -45,49 +45,6 @@ const VehiclesMain = () => {
       licensePlate: "9956443",
       type: 1,
     },
-
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
   ]);
 
   useEffect(() => {

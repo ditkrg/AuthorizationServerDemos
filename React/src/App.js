@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     // Commented out not to check the localStorage for the user's existence ** Temporary **
     // fetch current user from cookies
-    loadUserFromStorage(store);
+    // loadUserFromStorage(store);
   }, []);
 
   // Should be removed ** Temporary **
@@ -27,7 +27,7 @@ function App() {
   };
 
   // ** Temporary **
-  // logUserIn();
+  logUserIn();
 
   return (
     <Provider store={store}>
