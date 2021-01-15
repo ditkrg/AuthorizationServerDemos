@@ -17,7 +17,7 @@ const Table = ({ vehicleData }) => {
   }
 
   return (
-    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded">
+    <div className="shadow overflow-x-auto border-b border-gray-200 sm:rounded w-full">
       <table className="min-w-full divide-y divide-gray-200 mb-0">
         <thead className="bg-gray-50">
           <tr>

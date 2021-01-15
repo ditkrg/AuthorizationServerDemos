@@ -64,7 +64,7 @@ const VehiclesMain = () => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col xl:w-2/3 lg:w-4/5 w-11/12">
       <Heading1
         text={"Traffic Police Service"}
         classes="mt-24"
