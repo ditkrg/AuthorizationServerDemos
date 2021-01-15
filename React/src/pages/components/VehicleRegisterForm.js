@@ -9,6 +9,7 @@ import Card from "./Card";
 import Heading3 from "./Heading3";
 import Button from "./Button";
 import InputText from "./inputs/InputText";
+import InputSelect from "./inputs/InputSelect";
 
 const VehicleRegisterForm = () => {
   const [model, setModel] = useState("");
@@ -50,19 +51,18 @@ const VehicleRegisterForm = () => {
             name="color"
             onChangeEvent={(e) => setColor(e.target.value)}
           />
-
-          <label>Type: </label>
-          <select
+          <InputSelect
+            label="Type"
             value={type}
             name="type"
-            onChange={(e) => setType(e.target.value)}
-          >
-            <option value="1">Sedan</option>
-            <option value="2">SUV</option>
-            <option value="3">Pickup</option>
-          </select>
+            onChangeEvent={(e) => setType(e.target.value)}
+            options={[
+              { value: "1", text: "Sedan" },
+              { value: "2", text: "SUV" },
+              { value: "3", text: "Pickup" },
+            ]}
+          />
         </div>
-
         <Button text="Register" onClickEvent={registerVehicle} />
       </form>
     </Card>
