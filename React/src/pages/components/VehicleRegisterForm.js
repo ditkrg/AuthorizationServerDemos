@@ -28,7 +28,7 @@ const VehicleRegisterForm = () => {
   }
 
   return (
-    <Card styles={{ padding: "60px" }}>
+    <Card styles={{ padding: "60px" }} classes="xl:w-2/5">
       <form onSubmit={(e) => e.preventDefault()} className="m-0 flex flex-col">
         <Heading3 styles={{ marginTop: "0" }}>Register A Vehicle</Heading3>
 
@@ -37,18 +37,21 @@ const VehicleRegisterForm = () => {
             label="Model"
             value={model}
             name="model"
+            placeholder="Model"
             onChangeEvent={(e) => setModel(e.target.value)}
           />
           <InputText
             label="License Plate"
             value={licensePlate}
             name="licensePlate"
+            placeholder="License Plate"
             onChangeEvent={(e) => setlicensePlate(e.target.value)}
           />
           <InputText
             label="Color"
             value={color}
             name="color"
+            placeholder="Color"
             onChangeEvent={(e) => setColor(e.target.value)}
           />
           <InputSelect
@@ -63,7 +66,11 @@ const VehicleRegisterForm = () => {
             ]}
           />
         </div>
-        <Button text="Register" onClickEvent={registerVehicle} />
+        <Button
+          text="Register"
+          onClickEvent={registerVehicle}
+          classes="mt-10"
+        />
       </form>
     </Card>
   );
