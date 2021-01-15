@@ -4,6 +4,12 @@ import { useSelector } from "react-redux";
 // Services
 import * as apiService from "../../services/apiService";
 
+// Components
+import Card from "./Card";
+import Heading3 from "./Heading3";
+import Button from "./Button";
+import InputText from "./inputs/InputText";
+
 const VehicleRegisterForm = () => {
   const [model, setModel] = useState("");
   const [licensePlate, setlicensePlate] = useState("");
@@ -21,46 +27,45 @@ const VehicleRegisterForm = () => {
   }
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <h3>Register Vehicle:</h3>
-      <div className="form-group">
-        <label>Model: </label>
-        <input
-          value={model}
-          type="text"
-          name="model"
-          onChange={(e) => setModel(e.target.value)}
-        />
-        <label>License Plate: </label>
-        <input
-          value={licensePlate}
-          type="text"
-          name="licensePlate"
-          onChange={(e) => setlicensePlate(e.target.value)}
-        />
-        <label>Color: </label>
-        <input
-          value={color}
-          type="text"
-          name="color"
-          onChange={(e) => setColor(e.target.value)}
-        />
-        <label>Type: </label>
-        <select
-          value={type}
-          name="type"
-          onChange={(e) => setType(e.target.value)}
-        >
-          <option value="1">Sedan</option>
-          <option value="2">SUV</option>
-          <option value="3">Pickup</option>
-        </select>
-      </div>
+    <Card styles={{ padding: "60px" }}>
+      <form onSubmit={(e) => e.preventDefault()} className="m-0 flex flex-col">
+        <Heading3 styles={{ marginTop: "0" }}>Register A Vehicle</Heading3>
 
-      <button className="btn" onClick={() => registerVehicle()}>
-        Register
-      </button>
-    </form>
+        <div className="flex flex-col">
+          <InputText
+            label="Model"
+            value={model}
+            name="model"
+            onChangeEvent={(e) => setModel(e.target.value)}
+          />
+          <InputText
+            label="License Plate"
+            value={licensePlate}
+            name="licensePlate"
+            onChangeEvent={(e) => setlicensePlate(e.target.value)}
+          />
+          <InputText
+            label="Color"
+            value={color}
+            name="color"
+            onChangeEvent={(e) => setColor(e.target.value)}
+          />
+
+          <label>Type: </label>
+          <select
+            value={type}
+            name="type"
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value="1">Sedan</option>
+            <option value="2">SUV</option>
+            <option value="3">Pickup</option>
+          </select>
+        </div>
+
+        <Button text="Register" onClickEvent={registerVehicle} />
+      </form>
+    </Card>
   );
 };
 

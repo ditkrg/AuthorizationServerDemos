@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
+// Services
 import * as apiService from "../../services/apiService";
+
+// Components
 import Heading1 from "./Heading1";
+import Heading3 from "./Heading3";
 import Button from "./Button";
 import Table from "./table/Table";
 
@@ -70,10 +75,7 @@ const VehiclesMain = () => {
       {/* <p>Hello, {user.profile.given_name}.</p> */}
       {vehicleData ? (
         <>
-          <h3 className="font-light font-inter text-black-custom my-20 self-start">
-            Your Vehicles:
-          </h3>
-
+          <Heading3>Your Vehicles:</Heading3>
           <Table vehicleData={vehicleData} />
         </>
       ) : (
