@@ -9,6 +9,10 @@
   background-color: var(--blue);
 }
 
+.text-blue-custom {
+  color: var(--blue);
+}
+
 p,
 .font-inter {
   font-family: "Inter", sans-serif;
@@ -35,4 +39,52 @@ h6 {
 button:hover {
   background-color: #1d6ab1;
   border: none;
+}
+
+@media only screen and (max-width: 950px) {
+  .navbar-list {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #dfdfdf;
+    width: 40vw;
+    height: 100vh;
+    padding: 35vh 5vw 35vh 5vw;
+  }
+
+  .navbar-list li a,
+  .navbar-list li:nth-child(3) {
+    font-size: 1.5rem !important;
+    border-bottom: 1px solid var(--blue);
+    padding-bottom: 5px;
+    color: var(--blue);
+  }
+
+  .navbar-list li a:hover {
+    color: var(--blue);
+  }
+
+  .hamburger-menu {
+    display: block;
+    z-index: 1000;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .navbar-list {
+    width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-list {
+    width: 65vw;
+  }
+
+  .navbar-list li a,
+  .navbar-list li:nth-child(3) {
+    font-size: 1.28rem !important;
+  }
 }
