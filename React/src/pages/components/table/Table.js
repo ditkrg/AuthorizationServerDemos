@@ -5,6 +5,7 @@ import TableData from "./TableData";
 
 const Table = ({ vehicleData }) => {
   function getType(type) {
+    // eslint-disable-next-line
     switch (type) {
       case 1:
         return "Sedan";
