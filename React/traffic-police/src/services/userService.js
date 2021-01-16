@@ -2,8 +2,8 @@ import { UserManager } from 'oidc-client';
 import { storeUserError, storeUser } from '../actions/authActions'
 
 const config = {
-  authority: "https://localhost:5003",
-  client_id: "f42aec810e6a4980827037b6ffa7f968",
+  authority: "https://localhost:10000",
+  client_id: "traffic-police-react-app",
   redirect_uri: "https://localhost:3000/signin-oidc",
   response_type: "code",
   scope: "openid profile traffic-police-api",

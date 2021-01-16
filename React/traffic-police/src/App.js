@@ -16,18 +16,18 @@ function App() {
   useEffect(() => {
     // Commented out not to check the localStorage for the user's existence ** Temporary **
     // fetch current user from cookies
-    // loadUserFromStorage(store);
+    loadUserFromStorage(store);
   }, []);
 
   // Should be removed ** Temporary **
-  const logUserIn = () => {
-    const user = { profile: { given_name: "John Doe" } };
-    console.log(`User logged in!`);
-    store.dispatch(storeUser(user));
-  };
+  //const logUserIn = () => {
+  //  const user = { profile: { given_name: "John Doe" } };
+  //  console.log(`User logged in!`);
+  //  store.dispatch(storeUser(user));
+  // };
 
   // ** Temporary **
-  logUserIn();
+  // logUserIn();
 
   return (
     <Provider store={store}>

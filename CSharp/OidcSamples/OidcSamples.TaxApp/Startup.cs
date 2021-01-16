@@ -43,22 +43,22 @@ namespace OidcSamples.TaxApp
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.Authority = "https://localhost:5003/";
-                options.ClientId = "b4f24c7bc65b4621bba91e13e9066047";
+                options.Authority = "https://localhost:10000/";
+                options.ClientId = "tax-asp-net-core-app";
                 options.ResponseType = OpenIdConnectResponseType.Code;
                 options.UsePkce = true;
 
                 options.Scope.Add("traffic-police-api");
                 options.Scope.Add("offline_access");
                 options.Scope.Add("profile");
-                // options.Scope.Add("email");
+                options.Scope.Add("email");
 
                 options.SaveTokens = true;
-                options.ClientSecret = "ef3d771aaebf43b691dc8e69a75d67ea";
+                options.ClientSecret = "secret";
 
                 options.GetClaimsFromUserInfoEndpoint = true;
 
-                options.TokenValidationParameters.NameClaimType = "email";
+                options.TokenValidationParameters.NameClaimType = "name";
             });
 
             services.AddHttpContextAccessor();

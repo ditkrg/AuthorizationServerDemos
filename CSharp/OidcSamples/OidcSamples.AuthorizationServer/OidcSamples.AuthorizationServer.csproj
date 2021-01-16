@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="4.0.0" />
+
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+  </ItemGroup>
+  
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="https://json.schemastore.org/local.settings" /></VisualStudio></ProjectExtensions>
+</Project>

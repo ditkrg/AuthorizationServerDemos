@@ -66,7 +66,7 @@ namespace OidcSamples.TrafficPoliceApi
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.Authority = "https://localhost:5003";
+                options.Authority = "https://localhost:10000";
                 options.Audience = "traffic-police-api";
             });
         }
