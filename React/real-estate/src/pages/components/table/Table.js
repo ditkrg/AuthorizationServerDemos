@@ -7,7 +7,7 @@ const Table = ({ vehicleData }) => {
   return (
     <div className="shadow overflow-x-auto border-b border-gray-200 sm:rounded w-full">
       <table className="min-w-full divide-y divide-gray-200 mb-0">
-        <thead className="bg-gray-50">
+        <thead className="bg-blue-custom">
           <tr>
             <ColumnName text={"Address"} />
             <ColumnName text={"Area"} />
@@ -19,7 +19,7 @@ const Table = ({ vehicleData }) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {vehicleData.map((vehicle) => (
-            <tr key={vehicle.id}>
+            <tr key={vehicle.id} className="bg-gray-50">
               <TableData text={vehicle.address} />
               <TableData text={vehicle.area} />
               <TableData text={vehicle.citizen_upn} />

@@ -28,9 +28,11 @@ const VehicleRegisterForm = () => {
   }
 
   return (
-    <Card styles={{ padding: "60px" }} classes="xl:w-2/5">
+    <Card styles={{ padding: "100px 90px 100px 90px" }} classes="xl:w-2/5">
       <form onSubmit={(e) => e.preventDefault()} className="m-0 flex flex-col">
-        <Heading3 styles={{ marginTop: "0" }}>Register Real Estate</Heading3>
+        <Heading3 styles={{ marginTop: "0" }} classes="font-playfair">
+          Register Real Estate
+        </Heading3>
 
         <div className="flex flex-col">
           <InputText
