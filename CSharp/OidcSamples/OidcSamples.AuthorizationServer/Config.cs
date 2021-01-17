@@ -57,7 +57,7 @@ namespace OidcSamples.AuthorizationServer
                     RequireClientSecret = false,
                     RedirectUris =
                     {
-                        "https://localhost:3000/signin-oidc"
+                        "http://localhost:3000/signin-oidc"
                     },
                     AllowedScopes =
                     {
@@ -70,7 +70,7 @@ namespace OidcSamples.AuthorizationServer
                     RequirePkce = true,
                     PostLogoutRedirectUris =
                     {
-                       "https://localhost:3000/signout-callback-oidc"
+                       "http://localhost:3000/signout-callback-oidc"
                     },
 
                     RequireConsent = false,
@@ -85,7 +85,7 @@ namespace OidcSamples.AuthorizationServer
                     AllowedGrantTypes = GrantTypes.Code,
                     RedirectUris =
                     {
-                        "https://localhost:7001/signin-oidc"
+                        "http://localhost:7000/signin-oidc"
                     },
                     AllowedScopes =
                     {
@@ -102,7 +102,7 @@ namespace OidcSamples.AuthorizationServer
                     RequirePkce = true,
                     PostLogoutRedirectUris =
                     {
-                       "https://localhost:7001/signout-callback-oidc"
+                       "http://localhost:7000/signout-callback-oidc"
                     },
 
                     RequireConsent = false,

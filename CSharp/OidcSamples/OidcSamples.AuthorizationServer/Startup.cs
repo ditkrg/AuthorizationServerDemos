@@ -3,8 +3,10 @@
 
 
 using IdentityServerHost.Quickstart.UI;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
@@ -23,6 +25,7 @@ namespace OidcSamples.AuthorizationServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
 
             // Dirty Hack: Disable verifying SSL certificates 😬
             ServicePointManager.ServerCertificateValidationCallback +=
@@ -58,6 +61,11 @@ namespace OidcSamples.AuthorizationServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Lax
+            });
 
             app.UseStaticFiles();
             app.UseRouting();

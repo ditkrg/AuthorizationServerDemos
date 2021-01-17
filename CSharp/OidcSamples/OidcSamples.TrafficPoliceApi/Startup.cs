@@ -80,8 +80,9 @@ namespace OidcSamples.TrafficPoliceApi
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.Authority = "https://localhost:10000";
+                options.Authority = "http://localhost:10000";
                 options.Audience = "traffic-police-api";
+                options.RequireHttpsMetadata = false;
             });
         }
 
@@ -95,9 +96,12 @@ namespace OidcSamples.TrafficPoliceApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OidcSamples.TrafficPoliceApi v1"));
             }
 
-            app.UseCors("Default");
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax
+            });
 
-            app.UseHttpsRedirection();
+            app.UseCors("Default");
 
             app.UseRouting();
 
