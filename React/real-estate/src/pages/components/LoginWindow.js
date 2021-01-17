@@ -21,7 +21,7 @@ const LoginWindow = () => {
 
   return (
     <Card>
-      <Heading1 text={"Traffic Police Service"} />
+      <Heading1 text={"Real Estate Service"} />
 
       <p className="text-black-custom font-light text-3xl mb-20">
         Login to your account to view your dashboard and register a new vehicle.
