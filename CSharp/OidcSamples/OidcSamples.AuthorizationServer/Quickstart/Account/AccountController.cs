@@ -1,4 +1,4 @@
-// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
@@ -14,8 +14,12 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OidcSamples.AuthorizationServer.Quickstart.Account;
 using System;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace IdentityServerHost.Quickstart.UI
@@ -109,8 +113,21 @@ namespace IdentityServerHost.Quickstart.UI
 
             if (ModelState.IsValid)
             {
+                bool isValid = false;
+                if (model.UseTotp)
+                {
+                    var user = _users.FindByUsername(model.Username);
+                    var authenticator = new TwoStepsAuthenticator.TimeAuthenticator();
+                    string secret = Convert.ToBase64String(Encoding.ASCII.GetBytes(user.Password));
+                    isValid = authenticator.CheckCode(secret, model.Totp, user);
+                }
+                else
+                {
+                    isValid = _users.ValidateCredentials(model.Username, model.Password);
+                }
+
                 // validate username/password against in-memory store
-                if (_users.ValidateCredentials(model.Username, model.Password))
+                if (isValid)
                 {
                     var user = _users.FindByUsername(model.Username);
                     await _events.RaiseAsync(new UserLoginSuccessEvent(user.Username, user.SubjectId, user.Username, clientId: context?.Client.ClientId));
@@ -164,7 +181,7 @@ namespace IdentityServerHost.Quickstart.UI
                     }
                 }
 
-                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.Client.ClientId));
+                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId: context?.Client.ClientId));
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
             }
 
@@ -173,7 +190,7 @@ namespace IdentityServerHost.Quickstart.UI
             return View(vm);
         }
 
-        
+
         /// <summary>
         /// Show logout page
         /// </summary>
@@ -233,6 +250,30 @@ namespace IdentityServerHost.Quickstart.UI
             return View();
         }
 
+        private readonly char[] _chars =
+          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+
+        [HttpGet]
+        public IActionResult RegisterMobileDevice()
+        {
+            // NOTE: This is a dummy implemenatation and should NOT NEVER BE USED IN PROD!!!
+            var subject = User.FindFirst(JwtClaimTypes.Subject)?.Value;
+            var user = _users.FindBySubjectId(subject);
+
+            string secret = Convert.ToBase64String(Encoding.ASCII.GetBytes(user.Password));
+
+            var keyUri = string.Format(
+               "otpauth://totp/{0}:{1}?secret={2}&issuer={0}",
+               WebUtility.UrlEncode("KRG"),
+               WebUtility.UrlEncode(user.SubjectId),
+               secret);
+
+            return View(new TotpViewModel
+            {
+                Secret = secret,
+                KeyUri = keyUri
+            });
+        }
 
         /*****************************************/
         /* helper APIs for the AccountController */

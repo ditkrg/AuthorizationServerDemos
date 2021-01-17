@@ -67,6 +67,12 @@ namespace OidcSamples.AuthorizationServer
                 MinimumSameSitePolicy = SameSiteMode.Lax
             });
 
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Response.Headers.Add("Content-Security-Policy", new Microsoft.Extensions.Primitives.StringValues("default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' 'unsafe-inline' http://* 'unsafe-inline' 'unsafe-eval'"));
+                await next();
+            });
+
             app.UseStaticFiles();
             app.UseRouting();
 

@@ -10,8 +10,10 @@ namespace IdentityServerHost.Quickstart.UI
     {
         [Required]
         public string Username { get; set; }
-        [Required]
         public string Password { get; set; }
+        public string Totp { get; set; }
+        [Required]
+        public bool UseTotp { get; set; }
         public bool RememberLogin { get; set; }
         public string ReturnUrl { get; set; }
     }

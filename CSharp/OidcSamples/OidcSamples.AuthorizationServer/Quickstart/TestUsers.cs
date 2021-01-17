@@ -29,7 +29,7 @@ namespace IdentityServerHost.Quickstart.UI
                             new Claim(JwtClaimTypes.FamilyName, "Azeez"),
                             new Claim(JwtClaimTypes.Email, "muhammad-azeez@outlook.com"),
                             new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
-                        }
+                        },
                     }
                 };
             }
