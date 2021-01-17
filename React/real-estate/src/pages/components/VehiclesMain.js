@@ -16,44 +16,7 @@ const VehiclesMain = () => {
 
   const history = useHistory();
 
-  // Initial state must be null ** Temporary **
-  const [vehicleData, setVehicleData] = useState([
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "14324235",
-      type: 2,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "Black",
-      model: "Honda Accord",
-      licensePlate: "8765658",
-      type: 1,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "Beige",
-      model: "Toyota Corolla",
-      licensePlate: "235464",
-      type: 2,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "Grey",
-      model: "Toyota Yaris",
-      licensePlate: "1878767",
-      type: 2,
-    },
-    {
-      id: Math.floor(Math.random() * 200) + 1,
-      color: "White",
-      model: "Toyota Camry",
-      licensePlate: "9956443",
-      type: 1,
-    },
-  ]);
+  const [vehicleData, setVehicleData] = useState(null);
 
   useEffect(() => {
     getVehicles();
@@ -67,9 +30,13 @@ const VehiclesMain = () => {
   }
 
   return (
-    <div className="flex flex-col xl:w-2/3 lg:w-4/5 w-11/12">
+    <div
+      className={`flex flex-col xl:w-2/3 lg:w-4/5 w-11/12 ${
+        !vehicleData && "items-center"
+      }`}
+    >
       <Heading1
-        text={"Traffic Police Service"}
+        text={"Real Estate Service"}
         classes="mt-24"
         styles={{
           marginBottom: "0",
@@ -78,7 +45,14 @@ const VehiclesMain = () => {
       {/* <p>Hello, {user.profile.given_name}.</p> */}
       {vehicleData ? (
         <>
-          <Heading3>Your Vehicles:</Heading3>
+          <div className="flex justify-between items-center">
+            <Heading3>Your Vehicles:</Heading3>
+            <Button
+              text="Register"
+              // classes={vehicleData && "self-start"}
+              onClickEvent={() => history.push("/register")}
+            />
+          </div>
           <Table vehicleData={vehicleData} />
         </>
       ) : (
@@ -86,11 +60,12 @@ const VehiclesMain = () => {
           No vehicles yet.
         </h3>
       )}
-      <Button
-        text="Register A Vehicle"
-        classes={vehicleData && "self-start my-24"}
-        onClickEvent={() => history.push("/register")}
-      />
+      {!vehicleData && (
+        <Button
+          text="Register"
+          onClickEvent={() => history.push("/register")}
+        />
+      )}
     </div>
   );
 };

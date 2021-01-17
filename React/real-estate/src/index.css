@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap");
 
 :root {
-  --blue: #2170b9;
+  --blue: #343b99;
   --black: #1a1c21;
 }
 
@@ -19,7 +19,9 @@ p,
 }
 
 .font-playfair {
-  font-family: "Playfair Display", serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: var(--blue) !important;
 }
 
 .text-black-custom {
@@ -37,7 +39,7 @@ h6 {
 }
 
 button:hover {
-  background-color: #1d6ab1;
+  background-color: var(--blue);
   border: none;
 }
 

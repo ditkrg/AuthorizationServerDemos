@@ -24,7 +24,8 @@ const LoginWindow = () => {
       <Heading1 text={"Real Estate Service"} />
 
       <p className="text-black-custom font-light text-3xl mb-20">
-        Login to your account to view your dashboard and register a new vehicle.
+        Login to your account to view your dashboard and manage your real
+        estate.
       </p>
       <Button onClickEvent={login} text={"Login"} />
     </Card>

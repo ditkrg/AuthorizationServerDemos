@@ -53,7 +53,7 @@ const Navbar = () => {
                   className="text-white font-inter font-semibold hover:text-white focus:text-white tracking-normal mr-20"
                   style={{ fontSize: "1.335rem" }}
                 >
-                  Your Vehicles
+                  Your Real Estates
                 </Link>
               </li>
               <li className="m-0">
@@ -62,7 +62,7 @@ const Navbar = () => {
                   className="text-white font-inter font-semibold hover:text-white focus:text-white tracking-normal mr-20"
                   style={{ fontSize: "1.335rem" }}
                 >
-                  Register A Vehicles
+                  Register Real Estates
                 </Link>
               </li>
               <li
