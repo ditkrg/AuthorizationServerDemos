@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
@@ -31,6 +32,8 @@ namespace OidcSamples.TaxApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
+
             // Dirty Hack: Disable verifying SSL certificates 😬
             ServicePointManager.ServerCertificateValidationCallback +=
                 (sender, cert, chain, sslPolicyErrors) => true;
@@ -48,7 +51,7 @@ namespace OidcSamples.TaxApp
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.Authority = "https://localhost:10000/";
+                options.Authority = "http://localhost:10000/";
                 options.ClientId = "tax-asp-net-core-app";
                 options.ResponseType = OpenIdConnectResponseType.Code;
                 options.UsePkce = true;
@@ -64,6 +67,8 @@ namespace OidcSamples.TaxApp
                 options.GetClaimsFromUserInfoEndpoint = true;
 
                 options.TokenValidationParameters.NameClaimType = "name";
+
+                options.RequireHttpsMetadata = false;
             });
 
             services.AddHttpContextAccessor();
@@ -72,14 +77,14 @@ namespace OidcSamples.TaxApp
             // create an HttpClient used for accessing the API
             services.AddHttpClient("APIClient", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:6001/");
+                client.BaseAddress = new Uri("http://localhost:6000/");
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             }).AddHttpMessageHandler<BearerTokenHandler>();
 
             services.AddHttpClient("IDPClient", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5003/");
+                client.BaseAddress = new Uri("http://localhost:10000/");
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             });
@@ -99,7 +104,11 @@ namespace OidcSamples.TaxApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax
+            });
+
             app.UseStaticFiles();
 
             app.UseRouting();
