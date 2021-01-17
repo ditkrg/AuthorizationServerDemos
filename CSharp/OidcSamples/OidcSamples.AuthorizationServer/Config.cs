@@ -54,6 +54,7 @@ namespace OidcSamples.AuthorizationServer
                     ClientName = "Traffic Police React App",
                     ClientId = "traffic-police-react-app",
                     AllowedGrantTypes = GrantTypes.Code,
+                    RequireClientSecret = false,
                     RedirectUris =
                     {
                         "https://localhost:3000/signin-oidc"
