@@ -24,13 +24,13 @@ namespace OidcSamples.AuthorizationServer
             services.AddControllersWithViews();
 
             services.AddCors(options =>
-        {
-            options.AddPolicy(name: "Default",
-                    builder =>
-                    {
-                        builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
-                    });
-        });
+            {
+                options.AddPolicy(name: "Default",
+                        builder =>
+                        {
+                            builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                        });
+            });
 
             var builder = services.AddIdentityServer(options =>
             {
