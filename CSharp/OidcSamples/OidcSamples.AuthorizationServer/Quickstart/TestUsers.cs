@@ -19,8 +19,8 @@ namespace IdentityServerHost.Quickstart.UI
                 {
                     new TestUser
                     {
-                        SubjectId = "3199711031234",
-                        Username = "3199711031234",
+                        SubjectId = "3971103123456",
+                        Username = "3971103123456",
                         Password = "123",
                         Claims =
                         {
