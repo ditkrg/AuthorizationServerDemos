@@ -34,6 +34,15 @@ namespace OidcSamples.TrafficPoliceApi
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap["sub"] = "sub";
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "Default",
+                        builder =>
+                        {
+                            builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                        });
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
                        .UseSnakeCaseNamingConvention()
@@ -86,6 +95,8 @@ namespace OidcSamples.TrafficPoliceApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("Default");
 
             // 2. Enable authentication middleware
             app.UseAuthentication();
