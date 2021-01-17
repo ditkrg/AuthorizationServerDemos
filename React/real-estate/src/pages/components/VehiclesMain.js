@@ -16,7 +16,9 @@ const VehiclesMain = () => {
 
   const history = useHistory();
 
-  const [vehicleData, setVehicleData] = useState(null);
+  const [vehicleData, setVehicleData] = useState([]);
+
+  console.log(vehicleData);
 
   useEffect(() => {
     getVehicles();
@@ -46,7 +48,7 @@ const VehiclesMain = () => {
       {vehicleData ? (
         <>
           <div className="flex justify-between items-center">
-            <Heading3>Your Vehicles:</Heading3>
+            <Heading3>Your Real Estate:</Heading3>
             <Button
               text="Register"
               // classes={vehicleData && "self-start"}
