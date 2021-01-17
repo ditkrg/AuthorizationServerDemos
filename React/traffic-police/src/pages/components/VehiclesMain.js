@@ -67,7 +67,11 @@ const VehiclesMain = () => {
   }
 
   return (
-    <div className="flex flex-col xl:w-2/3 lg:w-4/5 w-11/12">
+    <div
+      className={`flex flex-col xl:w-2/3 lg:w-4/5 w-11/12 ${
+        !vehicleData && "items-center"
+      }`}
+    >
       <Heading1
         text={"Traffic Police Service"}
         classes="mt-24"
@@ -78,7 +82,14 @@ const VehiclesMain = () => {
       {/* <p>Hello, {user.profile.given_name}.</p> */}
       {vehicleData ? (
         <>
-          <Heading3>Your Vehicles:</Heading3>
+          <div className="flex justify-between items-center">
+            <Heading3>Your Vehicles:</Heading3>
+            <Button
+              text="Register A Vehicle"
+              // classes={vehicleData && "self-start"}
+              onClickEvent={() => history.push("/register")}
+            />
+          </div>
           <Table vehicleData={vehicleData} />
         </>
       ) : (
@@ -86,11 +97,12 @@ const VehiclesMain = () => {
           No vehicles yet.
         </h3>
       )}
-      <Button
-        text="Register A Vehicle"
-        classes={vehicleData && "self-start my-24"}
-        onClickEvent={() => history.push("/register")}
-      />
+      {!vehicleData && (
+        <Button
+          text="Register A Vehicle"
+          onClickEvent={() => history.push("/register")}
+        />
+      )}
     </div>
   );
 };
