@@ -23,6 +23,15 @@ namespace OidcSamples.AuthorizationServer
         {
             services.AddControllersWithViews();
 
+            services.AddCors(options =>
+        {
+            options.AddPolicy(name: "Default",
+                    builder =>
+                    {
+                        builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                    });
+        });
+
             var builder = services.AddIdentityServer(options =>
             {
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
@@ -47,6 +56,8 @@ namespace OidcSamples.AuthorizationServer
 
             app.UseStaticFiles();
             app.UseRouting();
+
+            app.UseCors("Default");
 
             app.UseIdentityServer();
 
