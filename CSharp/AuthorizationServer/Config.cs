@@ -82,9 +82,8 @@ namespace OidcSamples.AuthorizationServer
                     RequirePkce = true,
                     PostLogoutRedirectUris =
                     {
-                       "http://localhost:3000/signout-callback-oidc"
+                       "http://localhost:3000"
                     },
-
                     RequireConsent = false,
                 },
                 new Client
@@ -113,9 +112,8 @@ namespace OidcSamples.AuthorizationServer
                     RequirePkce = true,
                     PostLogoutRedirectUris =
                     {
-                       "http://localhost:4000/signout-callback-oidc"
+                       "http://localhost:4000"
                     },
-
                     RequireConsent = false,
                 },
                 new Client
@@ -148,7 +146,8 @@ namespace OidcSamples.AuthorizationServer
                     {
                        "http://localhost:7000/signout-callback-oidc"
                     },
-
+                    FrontChannelLogoutUri = "http://localhost:7000/signout-callback-oidc",
+                    FrontChannelLogoutSessionRequired = true,
                     RequireConsent = false,
                 }
             };

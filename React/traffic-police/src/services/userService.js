@@ -7,7 +7,7 @@ const config = {
   redirect_uri: "http://localhost:3000/signin-oidc",
   response_type: "code",
   scope: "openid profile traffic-police-api",
-  post_logout_redirect_uri: "http://localhost:3000/signout-oidc",
+  post_logout_redirect_uri: "http://localhost:3000"
 };
 
 const userManager = new UserManager(config);
@@ -33,10 +33,14 @@ export function signinRedirectCallback() {
   return userManager.signinRedirectCallback();
 }
 
-export function signoutRedirect() {
+export async function signoutRedirect() {
+  var user = await userManager.getUser();
+  let id_token = null;
+  if (user) id_token = user.id_token;
+
   userManager.clearStaleState();
   userManager.removeUser();
-  return userManager.signoutRedirect();
+  return userManager.signoutRedirect({ id_token_hint: id_token });
 }
 
 export function signoutRedirectCallback() {

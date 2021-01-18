@@ -14,8 +14,8 @@ const Navbar = () => {
 
   const user = useSelector((state) => state.auth.user);
 
-  function signOut() {
-    signoutRedirect();
+  async function signOut() {
+    await signoutRedirect();
   }
 
   return (
