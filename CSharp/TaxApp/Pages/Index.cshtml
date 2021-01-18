@@ -15,28 +15,28 @@
         style="margin-top: 60px; margin-bottom: 60px;">
         <h3 class="font-weight-bold mt-3 text-custom">Your total tax is:</h3>
         <p class="font-weight-bold text-black" style="font-size: 50px">@Model.TotalTax.ToString("N0") IQD</p>
-     </div>
+    </div>
 
     <div class="container mt-5">
         <h4 class="mt-5 mb-3 font-weight-bold">Taxable Properties</h4>
-            <table class="table mt-3 rounded table-bordered">
-                <thead class="table-primary">
-                    <tr>
-                        <th scope="col">Area</th>
-                        <th scope="col">Adress</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <table class="table mt-3 rounded table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">Area</th>
+                    <th scope="col">Adress</th>
+                </tr>
+            </thead>
+            <tbody>
 
-                    @foreach (var realEstate in Model.RealEstate)
-                    {
-                        <tr>
-                            <td>@realEstate.Area</td>
-                            <td>@realEstate.Address</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                @foreach (var realEstate in Model.RealEstate)
+                {
+                    <tr>
+                        <td>@realEstate.Area</td>
+                        <td>@realEstate.Address</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 
     <div class="container">
