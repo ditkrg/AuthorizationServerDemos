@@ -28,6 +28,7 @@ const VehiclesMain = () => {
   async function getVehicles() {
     console.log(user);
     const vehicles = await apiService.getVehiclesFromApi(user.access_token);
+    console.log(vehicles);
     setVehicleData(vehicles);
   }
 
