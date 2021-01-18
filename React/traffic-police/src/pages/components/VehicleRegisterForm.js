@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // Services
 import * as apiService from "../../services/apiService";
@@ -19,12 +20,14 @@ const VehicleRegisterForm = () => {
 
   const user = useSelector((state) => state.auth.user);
 
+  const history = useHistory();
+
   async function registerVehicle() {
     await apiService.registerVehicle(
       { model, licensePlate, color, type },
       user.access_token
     );
-    // await getVehicles();
+    history.push("/");
   }
 
   return (

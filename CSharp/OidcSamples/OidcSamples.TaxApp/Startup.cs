@@ -85,7 +85,7 @@ namespace OidcSamples.TaxApp
             // create an HttpClient used for accessing the API
             services.AddHttpClient("APIClient", client =>
             {
-                client.BaseAddress = new Uri("http://localhost:6000/");
+                client.BaseAddress = new Uri("http://localhost:9000/");
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             }).AddHttpMessageHandler<BearerTokenHandler>();

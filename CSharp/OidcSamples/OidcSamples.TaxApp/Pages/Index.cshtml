@@ -4,11 +4,17 @@
     ViewData["Title"] = "Home page";
 }
 
-<h2>General Directorate of Region Taxes and Real Estate</h2>
-<p class="lead">Welcome @Model.FirstName @Model.LastName! Your total tax is:</p>
-<p class="font-weight-bold" style="font-size: 64px">@Model.TotalTax.ToString("N0") IQD</p>
+<h1 class="col-lg-7 mt-5">General Directorate of Region Taxes and Real Estate</h1>
+<div class="col-lg-7 d-flex flex-column">
+    <p class="lead mt-2">Welcome @Model.FirstName @Model.LastName!</p>
+    <div class="bg-dark rounded py-3 px-4 mt-4">
+        <h2 class="font-weight-bold mt-3 text-warning">Your total tax is:</h2>
+        <p class="font-weight-bold text-light" style="font-size: 64px">@Model.TotalTax.ToString("N0") IQD</p>
+    </div>
+</div>
 
 <h3>Taxable Properties</h3>
+
 <h4>Vehicles</h4>
 <ul>
     @foreach (var vehicle in Model.Vehicles)
