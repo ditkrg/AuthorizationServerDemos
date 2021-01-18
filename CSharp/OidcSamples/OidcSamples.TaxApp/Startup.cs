@@ -65,6 +65,7 @@ namespace OidcSamples.TaxApp
                 options.UsePkce = true;
 
                 options.Scope.Add("traffic-police-api");
+                options.Scope.Add("real-estate-api");
                 options.Scope.Add("offline_access");
                 options.Scope.Add("profile");
                 options.Scope.Add("email");
@@ -83,9 +84,16 @@ namespace OidcSamples.TaxApp
             services.AddTransient<BearerTokenHandler>();
 
             // create an HttpClient used for accessing the API
-            services.AddHttpClient("APIClient", client =>
+            services.AddHttpClient("TP-APIClient", client =>
             {
                 client.BaseAddress = new Uri("http://localhost:9000/");
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            }).AddHttpMessageHandler<BearerTokenHandler>();
+
+            services.AddHttpClient("RE-APIClient", client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:8000/");
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             }).AddHttpMessageHandler<BearerTokenHandler>();
