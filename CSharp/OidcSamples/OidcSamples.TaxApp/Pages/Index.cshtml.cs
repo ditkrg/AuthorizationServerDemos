@@ -29,7 +29,7 @@ namespace OidcSamples.TaxApp.Pages
     public class RealEstate
     {
         public int Id { get; set; }
-        public int Area { get; set; }
+        public double Area { get; set; }
         public string Address { get; set; }
         public string Citizen_upn { get; set; }
     }

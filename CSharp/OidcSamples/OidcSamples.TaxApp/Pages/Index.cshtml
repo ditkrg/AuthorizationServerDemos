@@ -4,45 +4,64 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1 class="col-lg-7 mt-5">General Directorate of Region Taxes and Real Estate</h1>
-<div class="col-lg-7 d-flex flex-column">
-    <p class="lead mt-2">Welcome @Model.FirstName @Model.LastName!</p>
-    <div class="bg-dark rounded py-3 px-4 mt-4">
-        <h2 class="font-weight-bold mt-3 text-warning">Your total tax is:</h2>
-        <p class="font-weight-bold text-light" style="font-size: 64px">@Model.TotalTax.ToString("N0") IQD</p>
+<div class="container">
+
+    <div class="col-lg-7">
+        <p class="lead mt-5">Welcome @Model.FirstName @Model.LastName!</p>
+        <h1 class="mt-4">General Directorate of Region Taxes and Real Estate</h1>
+    </div>
+
+    <div class="col-lg-7 d-flex flex-column justify-content-center rounded py-3 px-4 shadow-sm"
+        style="margin-top: 60px; margin-bottom: 60px;">
+        <h3 class="font-weight-bold mt-3 text-custom">Your total tax is:</h3>
+        <p class="font-weight-bold text-black" style="font-size: 50px">@Model.TotalTax.ToString("N0") IQD</p>
+     </div>
+
+    <div class="container mt-5">
+        <h4 class="mt-5 mb-3 font-weight-bold">Taxable Properties</h4>
+            <table class="table mt-3 rounded table-bordered">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Area</th>
+                        <th scope="col">Adress</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var realEstate in Model.RealEstate)
+                    {
+                        <tr>
+                            <td>@realEstate.Area</td>
+                            <td>@realEstate.Address</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+
+    <div class="container">
+        <h4 class="mt-5 mb-3 font-weight-bold">Vehicles</h4>
+        <table class="table mt-3 rounded table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">Model</th>
+                    <th scope="col">License Plate</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var vehicle in Model.Vehicles)
+                {
+                    <tr>
+                        <td>@vehicle.Model</td>
+                        <td>@vehicle.LicensePlate</td>
+                        <td>@vehicle.Color</td>
+                        <td>@vehicle.Type</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
-
-<h3>Taxable Properties</h3>
-
-<h4 class="my-4">Vehicles</h4>
-
-<table class="table col-lg-7 mt-3">
-    <thead class="bg-dark">
-        <tr>   
-            <th scope="col" class="text-light">Model</th>
-            <th scope="col" class="text-light">License Plate</th>
-            <th scope="col" class="text-light">Color</th>
-            <th scope="col" class="text-light">Type</th>
-        </tr>
-    </thead>
-    <tbody>
-
-
-@foreach (var vehicle in Model.Vehicles)
-    {
-
-        <tr>
-            <td>@vehicle.Model</td>
-            <td>@vehicle.LicensePlate</td>
-            <td>@vehicle.Color</td>
-            <td>@vehicle.Type</td>
-        </tr>
-
-    }
-
-       
-      
-    </tbody>
-</table>
-
