@@ -9,26 +9,28 @@
 }
 
 <div class="nav-page">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
 
-        <a href="~/" class="navbar-brand">
-            <img src="~/icon.png" class="icon-banner">
-            IdentityServer4
-        </a>
+        <div class="container">
+            <a href="~/" class="navbar-brand">
+                <img style="height: 50px;" src="~/images/logo.svg" alt="logo">
+            </a>
 
-        @if (!string.IsNullOrWhiteSpace(name))
-        {
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
-                    
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-action="RegisterMobileDevice" asp-controller="Account">RegisterMobileDevice</a>
-                        <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
-                    </div>
-              </li>
-            </ul>
-        }
-    
+            @if (!string.IsNullOrWhiteSpace(name))
+            {
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-action="RegisterMobileDevice"
+                                asp-controller="Account">RegisterMobileDevice</a>
+                            <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            }
+        </div>
+
     </nav>
 </div>
