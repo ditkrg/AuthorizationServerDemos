@@ -9,6 +9,7 @@ const app = express()
 app.use(cors())
 const port = 8000
 
+// https://github.com/auth0/node-jwks-rsa/blob/master/examples/express-demo/README.md
 app.use(jwt({
   // Dynamically provide a signing key based on the kid in the header and the signing keys provided by the JWKS endpoint.
   secret: jwksRsa.expressJwtSecret({
