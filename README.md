@@ -12,7 +12,7 @@ We are using IdentityServer 4 to implement our Authorization Server. You can fin
 
 **URL:** http://localhost:10000
 
-**Dependencies:** 
+**Dependencies:**
 
 - [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
 
@@ -29,7 +29,7 @@ This is a react SPA that allows citizens to manage their registered vehicles. It
 
 **URL:** http://localhost:3000
 
-**Dependencies:** 
+**Dependencies:**
 
 - Authorization Server
 - Traffic Police API
@@ -48,9 +48,9 @@ npm start
 
 This is an ASP.NET Core API that talks to a PostgreSQL database.
 
-**URL:** http://localhost:6000
+**URL:** http://localhost:9000
 
-**Dependencies:** 
+**Dependencies:**
 
 - [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
 - Authorization Server
@@ -72,7 +72,7 @@ This is a react SPA that allows citizens to manage their registered real estate.
 
 **URL:** http://localhost:4000
 
-**Dependencies:** 
+**Dependencies:**
 
 - NodeJS
 - [oidc-js](https://github.com/IdentityModel/oidc-client-js)
@@ -93,7 +93,7 @@ This is an ExpressJS API that talks to a PostgreSQL database.
 
 **URL:** http://localhost:6000
 
-**Dependencies:** 
+**Dependencies:**
 
 - NodeJS
 - [node-jwks-rsa](https://github.com/auth0/node-jwks-rsa/blob/master/examples/express-demo/README.md)
