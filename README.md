@@ -8,7 +8,7 @@ This is an early look of what the future of authentication might look like for c
 
 ### IdentityServer 4
 
-We are using IdentityServer 4 to implement our Authorization Server. You can find [the source code here](./CSharp/OidcSamples/OidcSamples.AuthorizationServer).
+We are using IdentityServer 4 to implement our Authorization Server. You can find [the source code here](./CSharp/AuthorizationServer).
 
 **URL:** http://localhost:10000
 
@@ -19,7 +19,7 @@ We are using IdentityServer 4 to implement our Authorization Server. You can fin
 **How to run:**
 
 ```
-cd ./CSharp/OidcSamples/OidcSamples.AuthorizationServer
+cd ./CSharp/AuthorizationServer
 dotnet run
 ```
 
@@ -46,7 +46,7 @@ npm start
 
 ### Traffic Police API
 
-This is an ASP.NET Core API that talks to a PostgreSQL database. You can find [the source code here](./CSharp/OidcSamples/OidcSamples.TrafficPoliceApi).
+This is an ASP.NET Core API that talks to a PostgreSQL database. You can find [the source code here](./CSharp/TrafficPoliceApi).
 
 **URL:** http://localhost:9000
 
@@ -61,7 +61,7 @@ This is an ASP.NET Core API that talks to a PostgreSQL database. You can find [t
 **How to run:**
 
 ```
-cd ./CSharp/OidcSamples/OidcSamples.TrafficPoliceApi
+cd ./CSharp/TrafficPoliceApi
 dotnet tool install --global dotnet-ef
 dotnet ef database update
 dotnet run
@@ -125,7 +125,7 @@ node index.js
 
 ### Tax ASP.NET Core App
 
-This is a server-side app using ASP.NET Core Razor Pages. It talks to the Traffic Police API and Real Estate API to calculate taxes. You can find [the source code here](./CSharp/OidcSamples/OidcSamples.TaxApp).
+This is a server-side app using ASP.NET Core Razor Pages. It talks to the Traffic Police API and Real Estate API to calculate taxes. You can find [the source code here](./CSharp/TaxApp).
 
 **URL:** http://localhost:7000
 
@@ -139,7 +139,7 @@ This is a server-side app using ASP.NET Core Razor Pages. It talks to the Traffi
 **How to run:**
 
 ```
-cd ./CSharp/OidcSamples/OidcSamples.OidcSamples.TaxApp
+cd ./CSharp/TaxApp
 dotnet run
 ```
 
