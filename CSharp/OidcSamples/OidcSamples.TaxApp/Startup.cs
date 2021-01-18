@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Westwind.AspNetCore.LiveReload;
 
 namespace OidcSamples.TaxApp
 {
@@ -39,6 +40,13 @@ namespace OidcSamples.TaxApp
                 (sender, cert, chain, sslPolicyErrors) => true;
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            services.AddLiveReload(config =>
+            {
+                // optional - use config instead
+                //config.LiveReloadEnabled = true;
+                //config.FolderToMonitor = Path.GetFullname(Path.Combine(Env.ContentRootPath,"..")) ;
+            });
 
             services.AddControllersWithViews();
 
@@ -93,6 +101,9 @@ namespace OidcSamples.TaxApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // IMPORTANT: Before **any other output generating middleware** handlers including error handlers
+            app.UseLiveReload();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
