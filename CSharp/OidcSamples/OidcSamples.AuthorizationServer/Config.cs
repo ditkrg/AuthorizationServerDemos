@@ -22,6 +22,7 @@ namespace OidcSamples.AuthorizationServer
             };
 
         private const string TrafficPoliceApi = "traffic-police-api";
+        private const string RealEstateApi = "real-estate-api";
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
@@ -29,6 +30,10 @@ namespace OidcSamples.AuthorizationServer
                 new ApiScope(
                     TrafficPoliceApi,
                     "Traffic Police API scope"),
+
+                new ApiScope(
+                    RealEstateApi,
+                    "Real Estate API scope"),
             };
 
         public static IEnumerable<ApiResource> ApiResources =>
@@ -38,6 +43,13 @@ namespace OidcSamples.AuthorizationServer
                      // This will make sure that `traffic-police-api` will be in the 
                      // list of audiences when this scope is requested
                     Scopes = new List<string>{ TrafficPoliceApi },
+                },
+
+                new ApiResource(RealEstateApi, "Real Estate API")
+                {
+                     // This will make sure that `real-estate-api` will be in the 
+                     // list of audiences when this scope is requested
+                    Scopes = new List<string>{ RealEstateApi },
                 },
             };
 
@@ -65,12 +77,43 @@ namespace OidcSamples.AuthorizationServer
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.Address,
-                        "traffic-police-api",
+                        TrafficPoliceApi,
                     },
                     RequirePkce = true,
                     PostLogoutRedirectUris =
                     {
                        "http://localhost:3000/signout-callback-oidc"
+                    },
+
+                    RequireConsent = false,
+                },
+                new Client
+                {
+                    // IdentityTokenLifetime = 
+                    // AuthorizationCodeLifetime = 
+                    AccessTokenLifetime = 60 * 60 * 8,
+                    AllowOfflineAccess = true,
+                    UpdateAccessTokenClaimsOnRefresh = true,
+                    ClientName = "Real Estate React App",
+                    ClientId = "real-estate-react-app",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequireClientSecret = false,
+                    RedirectUris =
+                    {
+                        "http://localhost:4000/signin-oidc"
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.Address,
+                        RealEstateApi,
+                    },
+                    RequirePkce = true,
+                    PostLogoutRedirectUris =
+                    {
+                       "http://localhost:4000/signout-callback-oidc"
                     },
 
                     RequireConsent = false,
