@@ -3,11 +3,11 @@ import { storeUserError, storeUser } from "../actions/authActions";
 
 const config = {
   authority: "http://localhost:10000",
-  client_id: "traffic-police-react-app",
-  redirect_uri: "http://localhost:3000/signin-oidc",
+  client_id: "real-estate-react-app",
+  redirect_uri: "http://localhost:4000/signin-oidc",
   response_type: "code",
-  scope: "openid profile traffic-police-api",
-  post_logout_redirect_uri: "http://localhost:3000/signout-oidc",
+  scope: "openid profile real-estate-api",
+  post_logout_redirect_uri: "http://localhost:4000/signout-oidc",
 };
 
 const userManager = new UserManager(config);
