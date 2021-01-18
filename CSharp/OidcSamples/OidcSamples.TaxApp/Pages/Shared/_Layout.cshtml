@@ -15,27 +15,27 @@
     <header>
         <nav
             class="navbar navbar-expand-sm justify-content-between navbar-toggleable-sm navbar-light bg-warning border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">OidcSamples.TaxApp</a>
+            <div class="container d-inline-flex justify-content-between w-100">
+
+                <img style="height: 72px;" src="~/images/logo.svg" alt="">
+                @* <a class="navbar-brand" asp-area="" asp-page="/Index">Tax Services</a> *@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                <div class="navbar-collapse collapse flex-grow-0">
+                    <ul class="navbar-nav">@if (User.Identity.IsAuthenticated)
+                        {
+                            <span class="mr-sm-4 my-sm-0 my-2 bg-light text-secondary px-3 py-2 rounded"
+                                style="font-weight: bold;">@User.Claims.First(c
+                            =>
+                            c.Type
+                            ==
+                            "name").Value</span>
+                            <a class="btn btn-secondary" role="button" asp-controller="Authentication"
+                                asp-action="Logout">Logout</a>
+                        }
                     </ul>
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <span class="navbar-text mr-1">@User.Claims.First(c => c.Type == "email").Value</span>
-                        <a asp-controller="Authentication" asp-action="Logout">Logout</a>
-                    }
                 </div>
             </div>
         </nav>
