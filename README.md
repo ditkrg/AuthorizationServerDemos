@@ -146,3 +146,4 @@ dotnet run
 ## Notes
 
 1. The APIs assume that the PostgreSQL database instance is on localhost and the username is `postgres` and password is `root`. If it's different, then you have to configure the APIs with the correct credentials.
+1. We are using different tech stacks for different apps/APIs in this demo to show that an authorization server is language-agnostic and can be used by different tech stacks and in different use cases.
