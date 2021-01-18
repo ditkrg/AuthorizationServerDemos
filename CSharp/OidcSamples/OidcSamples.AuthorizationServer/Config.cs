@@ -137,6 +137,7 @@ namespace OidcSamples.AuthorizationServer
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.Email,
                         "traffic-police-api",
+                        "real-estate-api",
                     },
                     ClientSecrets =
                     {

@@ -26,6 +26,14 @@ namespace OidcSamples.TaxApp.Pages
         public VehicleType Type { get; set; }
     }
 
+    public class RealEstate
+    {
+        public int Id { get; set; }
+        public int Area { get; set; }
+        public string Address { get; set; }
+        public string Citizen_upn { get; set; }
+    }
+
     [Authorize] //(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class IndexModel : PageModel
     {
@@ -43,29 +51,61 @@ namespace OidcSamples.TaxApp.Pages
         public decimal TotalTax { get; set; }
 
         public List<Vehicle> Vehicles { get; set; }
+        public List<RealEstate> RealEstate { get; set; }
 
         public async Task OnGet()
         {
-            var client = _httpClientFactory.CreateClient("APIClient");
-            var response = await client.GetAsync($"/api/vehicles");
+            var tpClient = _httpClientFactory.CreateClient("TP-APIClient");
+            var tpResponse = await tpClient.GetAsync($"/api/vehicles");
 
-            if (response.IsSuccessStatusCode)
+            Vehicles = await GetVehicles();
+            RealEstate = await GetRealEstate();
+
+            TotalTax = Vehicles.Sum(v => 20_000) + RealEstate.Sum(r => 100_000);
+
+            FirstName = User.Claims.First(c => c.Type == "given_name").Value;
+            LastName = User.Claims.First(c => c.Type == "family_name").Value;
+        }
+
+        private async Task<List<Vehicle>> GetVehicles()
+        {
+            var tpClient = _httpClientFactory.CreateClient("TP-APIClient");
+            var tpResponse = await tpClient.GetAsync($"/api/vehicles");
+
+            if (tpResponse.IsSuccessStatusCode)
             {
-                using (var responseStream = await response.Content.ReadAsStreamAsync())
+                using (var responseStream = await tpResponse.Content.ReadAsStreamAsync())
                 {
-                    Vehicles = await JsonSerializer.DeserializeAsync<List<Vehicle>>(responseStream, new JsonSerializerOptions
+                    return await JsonSerializer.DeserializeAsync<List<Vehicle>>(responseStream, new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true
                     });
-
-                    TotalTax = Vehicles.Sum(v => 20_000);
-                    FirstName = User.Claims.First(c => c.Type == "given_name").Value;
-                    LastName = User.Claims.First(c => c.Type == "family_name").Value;
                 }
             }
             else
             {
-                throw new System.Exception("Problem accessing the API");
+                throw new System.Exception("Problem accessing Traffic Police the API");
+            }
+        }
+
+        private async Task<List<RealEstate>> GetRealEstate()
+        {
+            var tpClient = _httpClientFactory.CreateClient("RE-APIClient");
+            var tpResponse = await tpClient.GetAsync($"/real-estate");
+
+            if (tpResponse.IsSuccessStatusCode)
+            {
+                using (var responseStream = await tpResponse.Content.ReadAsStreamAsync())
+                {
+                    return await JsonSerializer.DeserializeAsync<List<RealEstate>>(responseStream, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+                }
+            }
+            else
+            {
+                throw new System.Exception("Problem accessing the Real Estate API");
             }
         }
     }
