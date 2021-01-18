@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
+using Westwind.AspNetCore.LiveReload;
 
 namespace OidcSamples.AuthorizationServer
 {
@@ -24,8 +25,13 @@ namespace OidcSamples.AuthorizationServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddLiveReload(config =>
+            {
+                // optional - use config instead
+                //config.LiveReloadEnabled = true;
+                //config.FolderToMonitor = Path.GetFullname(Path.Combine(Env.ContentRootPath,"..")) ;
+            });
 
             // Dirty Hack: Disable verifying SSL certificates 😬
             ServicePointManager.ServerCertificateValidationCallback +=
@@ -57,6 +63,9 @@ namespace OidcSamples.AuthorizationServer
 
         public void Configure(IApplicationBuilder app)
         {
+            // IMPORTANT: Before **any other output generating middleware** handlers including error handlers
+            app.UseLiveReload();
+
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
