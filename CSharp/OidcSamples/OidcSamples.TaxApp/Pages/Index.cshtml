@@ -15,10 +15,34 @@
 
 <h3>Taxable Properties</h3>
 
-<h4>Vehicles</h4>
-<ul>
-    @foreach (var vehicle in Model.Vehicles)
+<h4 class="my-4">Vehicles</h4>
+
+<table class="table col-lg-7 mt-3">
+    <thead class="bg-dark">
+        <tr>   
+            <th scope="col" class="text-light">Model</th>
+            <th scope="col" class="text-light">License Plate</th>
+            <th scope="col" class="text-light">Color</th>
+            <th scope="col" class="text-light">Type</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+@foreach (var vehicle in Model.Vehicles)
     {
-        <li>@vehicle.Model (@vehicle.LicensePlate)</li>
+
+        <tr>
+            <td>@vehicle.Model</td>
+            <td>@vehicle.LicensePlate</td>
+            <td>@vehicle.Color</td>
+            <td>@vehicle.Type</td>
+        </tr>
+
     }
-</ul>
+
+       
+      
+    </tbody>
+</table>
+
