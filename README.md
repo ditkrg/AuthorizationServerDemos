@@ -92,7 +92,7 @@ npm start
 
 This is an ExpressJS API that talks to a PostgreSQL database.
 
-**URL:** http://localhost:6000
+**URL:** http://localhost:8000
 
 **Dependencies:**
 
