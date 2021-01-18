@@ -8,7 +8,10 @@ const pool = new Pool({
 });
 
 const getAllRealEstate = (request, response) => {
-  pool.query("SELECT * FROM real_estate ORDER BY id DESC", (error, results) => {
+  // The express-jwt middleware decodes the jwt token and store all claims on request.user
+  // https://github.com/auth0/express-jwt/issues/153#issuecomment-269498310
+  citizen_upn = request.user.sub;
+  pool.query(`SELECT * FROM real_estate WHERE citizen_upn = '${citizen_upn}' ORDER BY id DESC`, (error, results) => {
     if (error) {
       throw error;
     }
@@ -16,10 +19,10 @@ const getAllRealEstate = (request, response) => {
   });
 };
 
-// We don't need the citizen_upn here? ** Temporary **
 const insertRealEstate = (request, response) => {
-  const { address, area, citizen_upn } = request.body;
-
+  const { address, area } = request.body;
+  citizen_upn = request.user.sub;
+  console.log(citizen_upn)
   pool.query(
     "INSERT INTO real_estate (address, area, citizen_upn) VALUES ($1, $2, $3)",
     [address, area, citizen_upn],

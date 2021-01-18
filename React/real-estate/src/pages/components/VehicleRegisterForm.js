@@ -21,7 +21,7 @@ const VehicleRegisterForm = () => {
 
   async function registerVehicle() {
     await apiService.registerVehicle(
-      { address, area, citizen_upn: user.profile.sub },
+      { address, area },
       user.access_token
     );
     history.push("/");

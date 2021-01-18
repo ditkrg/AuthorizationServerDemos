@@ -14,7 +14,7 @@ We are using IdentityServer 4 to implement our Authorization Server. You can fin
 
 **Dependencies:**
 
-- [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1) (Because the latest version that IdentityServer4 supports is .NET Core 3.1)
 
 **How to run:**
 

@@ -11,9 +11,9 @@ namespace OidcSamples.TaxApp.Pages
 {
     public enum VehicleType
     {
-        Sedan = 0,
-        SUV = 1,
-        Pickup = 2
+        Sedan = 1,
+        SUV = 2,
+        Pickup = 3
     }
 
     public class Vehicle

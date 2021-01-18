@@ -11,7 +11,6 @@ const Table = ({ vehicleData }) => {
           <tr>
             <ColumnName text={"Address"} />
             <ColumnName text={"Area"} />
-            <ColumnName text={"Citizen UPN"} />
             <th scope="col" className="relative px-6 py-3">
               <span className="sr-only">Actions</span>
             </th>
@@ -22,7 +21,6 @@ const Table = ({ vehicleData }) => {
             <tr key={vehicle.id} className="bg-gray-50">
               <TableData text={vehicle.address} />
               <TableData text={vehicle.area} />
-              <TableData text={vehicle.citizen_upn} />
               <TableData Component={EditBtns} />
             </tr>
           ))}
