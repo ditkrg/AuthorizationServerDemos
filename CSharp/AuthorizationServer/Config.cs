@@ -146,8 +146,7 @@ namespace OidcSamples.AuthorizationServer
                     {
                        "http://localhost:7000/signout-callback-oidc"
                     },
-                    FrontChannelLogoutUri = "http://localhost:7000/signout-callback-oidc",
-                    FrontChannelLogoutSessionRequired = true,
+                    FrontChannelLogoutUri = "http://localhost:7000/Authentication/FrontChannelLogout",
                     RequireConsent = false,
                 }
             };
