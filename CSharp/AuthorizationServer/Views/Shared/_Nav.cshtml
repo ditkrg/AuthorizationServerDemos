@@ -11,14 +11,14 @@
 <div class="nav-page">
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
 
-        <div class="container">
+        <div class="container d-flex justify-content-between align-items-center">
             <a href="~/" class="navbar-brand">
                 <img style="height: 50px;" src="~/images/logo.svg" alt="logo">
             </a>
 
             @if (!string.IsNullOrWhiteSpace(name))
             {
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
 

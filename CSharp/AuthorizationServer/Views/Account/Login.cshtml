@@ -1,95 +1,188 @@
 @model LoginViewModel
+@{
+    Layout = null;
+}
 
-<div class="login-page">
+<!DOCTYPE html>
+<html lang="en">
 
-    <partial name="_ValidationSummary" />
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' 'unsafe-inline' http://* 'unsafe-inline' 'unsafe-eval'" />
 
-    <div class="row justify-content-center align-items-center w-100 h-100">
+    <title>IdentityServer4</title>
 
-        @if (Model.EnableLocalLogin)
-        {
-            <div class="col-sm-6">
-                <div class="card bg-white shadow px-4 py-3 border-0">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
 
-                    <div class="card-body">
-                        <h2 class="mb-4 text-primary">Login</h2>
-                        <form asp-route="Login">
-                            <input type="hidden" asp-for="ReturnUrl" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-                            <div class="form-group">
-                                <label style="font-size: 1.1rem;" asp-for="Username"></label>
-                                <input class="form-control" placeholder="Username" asp-for="Username" autofocus>
-                            </div>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-                            <div class="form-group">
-                                <label asp-for="Password"></label>
-                                <input type="password" class="form-control" placeholder="Password" asp-for="Password"
-                                    autocomplete="off">
-                            </div>
+    <link href="~/icons/css/all.css" rel="stylesheet">
 
-                            <div class="form-group">
-                                <label asp-for="UseTotp">Use Your mobile phone for authentication?</label>
-                                <input asp-for="UseTotp" />
-                            </div>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
 
-                            <div class="form-group">
-                                <label asp-for="Totp">TOTP</label>
-                                <input type="password" class="form-control"
-                                    placeholder="Type in the one-time-password from your authenticator app" asp-for="Totp"
-                                    autocomplete="off">
-                            </div>
-                            @if (Model.AllowRememberLogin)
-                            {
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" asp-for="RememberLogin">
-                                        <label class="form-check-label" asp-for="RememberLogin">
-                                            Remember My Login
-                                        </label>
-                                    </div>
-                                </div>
-                            }
-                            <button class="btn btn-primary px-5 font-weight-bold mr-2" name="button"
-                                value="login">Login</button>
-                            <button class="btn btn-secondary font-weight-bold px-3" name="button"
-                                value="cancel">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        }
+<body class="bg-light">
 
-        @if (Model.VisibleExternalProviders.Any())
-        {
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>External Account</h2>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-inline">
-                            @foreach (var provider in Model.VisibleExternalProviders)
-                            {
-                                <li class="list-inline-item">
-                                    <a class="btn btn-secondary" asp-controller="External" asp-action="Challenge"
-                                        asp-route-scheme="@provider.AuthenticationScheme"
-                                        asp-route-returnUrl="@Model.ReturnUrl">
-                                        @provider.DisplayName
-                                    </a>
-                                </li>
-                            }
+    <div class="container body-container">
+
+        <div class="login-page" style="margin-top: 110px;">
+
+            <partial name="_ValidationSummary" />
+
+            <div class="row justify-content-center align-items-center w-100 h-100">
+
+                @if (Model.EnableLocalLogin)
+                {
+                    <div class="col-sm-6">
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item" onclick="usePassword()">
+                                <a class="nav-link active" href="#" id="passwordTab"><i class="fas fa-key mr-2"></i>Use
+                                    Password</a>
+                            </li>
+                            <li class="nav-item" onclick="useTotp()">
+                                <a class="nav-link" href="#" id="totpTab"><i class="fas fa-mobile-alt mr-2"></i>Use Mobile
+                                    Phone</a>
+                            </li>
                         </ul>
+
+                        <div class="card bg-white px-4 py-3 border-top-0 rounded-bottom">
+
+                            <div class="card-body">
+                                <h2 class="mb-4 text-primary">Login</h2>
+                                <form asp-route="Login">
+                                    <input type="hidden" asp-for="ReturnUrl" />
+
+                                    <div class="form-group">
+                                        <label style="font-size: 1.1rem;" asp-for="Username"></label>
+                                        <input class="form-control rounded-sm" placeholder="Username" asp-for="Username"
+                                            autofocus>
+                                    </div>
+
+                                    <div class="form-group" id="password-field">
+                                        <label asp-for="Password"></label>
+                                        <input type="password" class="form-control rounded-sm" placeholder="Password"
+                                            asp-for="Password" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group" style="display: none;" id="totp-input">
+                                        <label asp-for="Totp">TOTP</label>
+                                        <input type="password" class="form-control rounded-sm"
+                                            placeholder="Type in the one-time-password from your authenticator app"
+                                            asp-for="Totp" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        @* <label id="totp-checkbox-label" asp-for="UseTotp" class="text-primary"
+                                            style="cursor: pointer;">Use
+                                            your mobile phone for
+                                            authentication?</label> *@
+                                        <input hidden id="totp-checkbox" asp-for="UseTotp" />
+                                    </div>
+
+
+                                    @if (Model.AllowRememberLogin)
+                                    {
+                                        <div class="form-group mt-4 mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" asp-for="RememberLogin">
+                                                <label class="form-check-label" asp-for="RememberLogin">
+                                                    Remember My Login
+                                                </label>
+                                            </div>
+                                        </div>
+                                    }
+                                    <button class="btn btn-primary px-5 font-weight-bold mr-2" name="button"
+                                        value="login">Login</button>
+                                    <button class="btn btn-secondary font-weight-bold px-3" name="button"
+                                        value="cancel">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
+
+                @if (Model.VisibleExternalProviders.Any())
+                {
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>External Account</h2>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-inline">
+                                    @foreach (var provider in Model.VisibleExternalProviders)
+                                    {
+                                        <li class="list-inline-item">
+                                            <a class="btn btn-secondary" asp-controller="External" asp-action="Challenge"
+                                                asp-route-scheme="@provider.AuthenticationScheme"
+                                                asp-route-returnUrl="@Model.ReturnUrl">
+                                                @provider.DisplayName
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
+                {
+                    <div class="alert alert-warning">
+                        <strong>Invalid login request</strong>
+                        There are no login schemes configured for this request.
+                    </div>
+                }
             </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const totpInput = document.getElementById("totp-input");
+        const totpCheckbox = document.getElementById("totp-checkbox");
+        const passwordField = document.getElementById("password-field")
+        const passwordTab = document.getElementById("passwordTab")
+        const totpTab = document.getElementById("totpTab")
+
+        function usePassword() {
+            totpCheckbox.checked = false
+            totpInput.style.display = "none";
+            passwordField.style.display = "block"
+
+            passwordTab.classList.add("active")
+            totpTab.classList.remove("active")
         }
 
-        @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
-        {
-            <div class="alert alert-warning">
-                <strong>Invalid login request</strong>
-                There are no login schemes configured for this request.
-            </div>
+        function useTotp() {
+            totpCheckbox.checked = true
+            totpInput.style.display = "block";
+            passwordField.style.display = "none"
+
+            passwordTab.classList.remove("active")
+            totpTab.classList.add("active")
         }
-    </div>
-</div>
+    </script>
+</body>
+
+</html>
