@@ -147,7 +147,7 @@ namespace IdentityServerHost.Quickstart.UI
                     // issue authentication cookie with subject ID and username
                     var isuser = new IdentityServerUser(user.SubjectId)
                     {
-                        DisplayName = user.Username
+                        DisplayName = user.Claims.First(c => c.Type == JwtClaimTypes.Name).Value
                     };
 
                     await HttpContext.SignInAsync(isuser, props);
