@@ -8,9 +8,20 @@ const config = {
   response_type: "code",
   scope: "openid profile real-estate-api",
   post_logout_redirect_uri: "http://localhost:4000",
+  monitorSession: true,
+
+  // https://github.com/IdentityServer/IdentityServer4/blob/main/samples/Clients/src/JsOidc/wwwroot/app.js
+  // silent renew will get a new access_token via an iframe 
+  // just prior to the old access_token expiring (60 seconds prior)
+  // silent_redirect_uri: window.location.origin + "/silent.html",
+  // automaticSilentRenew: true,
+
+  // will revoke (reference) access tokens at logout time
+  revokeAccessTokenOnSignout: true,
 };
 
 const userManager = new UserManager(config);
+userManager.events.addUserSignedOut(signoutRedirect);
 
 export async function loadUserFromStorage(store) {
   try {
