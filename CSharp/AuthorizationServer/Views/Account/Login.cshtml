@@ -33,7 +33,7 @@
 
     <div class="container body-container">
 
-        <div class="login-page" style="margin-top: 110px;">
+        <div class="login-page" style="margin-top: 20px;">
 
             <partial name="_ValidationSummary" />
 
@@ -41,7 +41,9 @@
 
                 @if (Model.EnableLocalLogin)
                 {
-                    <div class="col-sm-6">
+                    <div class="col-lg-6 col-md-8">
+
+                        <img src="~/images/logo-login.svg" alt="logo" style="height: 66px;" class="mb-5">
 
                         <ul class="nav nav-tabs">
                             <li class="nav-item" onclick="usePassword()">
