@@ -8,6 +8,8 @@ This is an early look of what the future of authentication might look like for c
 
 <img src="assets/architecture.png" alt="Components Architecture" style="zoom:50%;" />
 
+**Note:** You can run all components by using the `run.ps1` script.
+
 ### IAM
 
 We are using IdentityServer 4 to implement our Authorization Server (Identity and Access Management). You can find [the source code here](./CSharp/AuthorizationServer).
