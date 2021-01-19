@@ -30,6 +30,20 @@ namespace IdentityServerHost.Quickstart.UI
                             new Claim(JwtClaimTypes.Email, "muhammad-azeez@outlook.com"),
                             new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
                         },
+                    },
+                    new TestUser
+                    {
+                        SubjectId = "4990102438634",
+                        Username = "4990102438634",
+                        Password = "123",
+                        Claims =
+                        {
+                            new Claim(JwtClaimTypes.Name, "Vazhin Tayeb"),
+                            new Claim(JwtClaimTypes.GivenName, "Vazhin"),
+                            new Claim(JwtClaimTypes.FamilyName, "Tayeb"),
+                            new Claim(JwtClaimTypes.Email, "vazhintayeb@gmail.com"),
+                            new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
+                        },
                     }
                 };
             }

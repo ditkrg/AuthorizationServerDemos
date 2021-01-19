@@ -6,10 +6,12 @@
 }
 
 <div class="logged-out-page">
-    <h1>
+   <div>
+        <h1>
         Logout
-        <small>You are now logged out</small>
     </h1>
+    <h3 class="font-weight-light mt-3">You are now logged out</h3>
+   </div>
 
     @if (Model.PostLogoutRedirectUri != null)
     {
