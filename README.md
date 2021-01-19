@@ -6,9 +6,11 @@ This is an early look of what the future of authentication might look like for c
 
 ## Components
 
-### IdentityServer 4
+<img src="assets/architecture.png" alt="Components Architecture" style="zoom:50%;" />
 
-We are using IdentityServer 4 to implement our Authorization Server. You can find [the source code here](./CSharp/AuthorizationServer).
+### IAM
+
+We are using IdentityServer 4 to implement our Authorization Server (Identity and Access Management). You can find [the source code here](./CSharp/AuthorizationServer).
 
 **URL:** http://localhost:10000
 
@@ -23,7 +25,7 @@ cd ./CSharp/AuthorizationServer
 dotnet run
 ```
 
-### Traffic Police React App
+### Traffic Police App
 
 This is a react SPA that allows citizens to manage their registered vehicles. It talks to the Traffic Police API to get and update data. You can find [the source code here](./React/traffic-police).
 
@@ -67,7 +69,7 @@ dotnet ef database update
 dotnet run
 ```
 
-### Real Estate React App
+### Real Estate App
 
 This is a react SPA that allows citizens to manage their registered real estate. It talks to the Real Estate API to get and update data. You can find [the source code here](./React/real-estate).
 
@@ -123,7 +125,7 @@ npm install
 node index.js
 ```
 
-### Tax ASP.NET Core App
+### Tax App
 
 This is a server-side app using ASP.NET Core Razor Pages. It talks to the Traffic Police API and Real Estate API to calculate taxes. You can find [the source code here](./CSharp/TaxApp).
 
