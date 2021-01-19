@@ -43,14 +43,16 @@
                 {
                     <div class="col-lg-6 col-md-8">
 
-                        <img src="~/images/logo-login.svg" alt="logo" style="height: 66px;" class="mb-5">
+                        <a href="~/">
+                            <img src="~/images/logo-login.svg" alt="logo" style="height: 66px;" class="mb-5">
+                        </a>
 
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item" onclick="usePassword()">
+                        <ul class="nav nav-tabs d-flex justify-content-between w-100">
+                            <li class="nav-item" onclick="usePassword()" style="width: 50%; text-align: center;">
                                 <a class="nav-link active" href="#" id="passwordTab"><i class="fas fa-key mr-2"></i>Use
                                     Password</a>
                             </li>
-                            <li class="nav-item" onclick="useTotp()">
+                            <li class="nav-item" onclick="useTotp()" style="width: 50%; text-align: center;">
                                 <a class="nav-link" href="#" id="totpTab"><i class="fas fa-mobile-alt mr-2"></i>Use Mobile
                                     Phone</a>
                             </li>
@@ -77,8 +79,7 @@
 
                                     <div class="form-group" style="display: none;" id="totp-input">
                                         <label asp-for="Totp">TOTP</label>
-                                        <input type="password" class="form-control rounded-sm"
-                                            placeholder="Type in the one-time-password from your authenticator app"
+                                        <input type="password" class="form-control rounded-sm" placeholder="Code"
                                             asp-for="Totp" autocomplete="off">
                                     </div>
 
